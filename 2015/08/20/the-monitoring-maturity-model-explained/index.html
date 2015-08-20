@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="devops," />
 
 
 
@@ -37,19 +37,20 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="original post: http://blog.stackstate.com/the-monitoring-maturity-model-explained
+The pace of change is increasing. Component sizes are shrinking. All the while monitoring solutions are bombarding us">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://ri0day.github.io/2015/08/19/hello-world/index.html">
+<meta property="og:title" content="the monitoring maturity model explained">
+<meta property="og:url" content="http://ri0day.github.io/2015/08/20/the-monitoring-maturity-model-explained/index.html">
 <meta property="og:site_name" content="ri0day">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-08-19T08:10:02.000Z">
+<meta property="og:description" content="original post: http://blog.stackstate.com/the-monitoring-maturity-model-explained
+The pace of change is increasing. Component sizes are shrinking. All the while monitoring solutions are bombarding us">
+<meta property="og:image" content="http://cdn2.hubspot.net/hub/516677/hubfs/Monitor_Maturity_Model_explained.png?t=1439974146337&width=531">
+<meta property="og:updated_time" content="2015-08-20T08:03:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="the monitoring maturity model explained">
+<meta name="twitter:description" content="original post: http://blog.stackstate.com/the-monitoring-maturity-model-explained
+The pace of change is increasing. Component sizes are shrinking. All the while monitoring solutions are bombarding us">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -59,7 +60,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | ri0day </title>
+  <title> the monitoring maturity model explained | ri0day </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +159,7 @@ Quick">
           
           
             
-              Hello World
+              the monitoring maturity model explained
             
           
         </h1>
@@ -167,8 +168,8 @@ Quick">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-19T16:10:02+08:00" content="2015-08-19">
-            2015-08-19
+          <time itemprop="dateCreated" datetime="2015-08-20T13:42:33+08:00" content="2015-08-20">
+            2015-08-20
           </time>
         </span>
 
@@ -186,31 +187,60 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><p>original post: <a href="http://blog.stackstate.com/the-monitoring-maturity-model-explained" target="_blank" rel="external">http://blog.stackstate.com/the-monitoring-maturity-model-explained</a></p>
+<p>The pace of change is increasing. Component sizes are shrinking. All the while monitoring solutions are bombarding us with log data, metrics, status reports and alerts. It all scales, but we don’t. How do we prevent from drowning in run-time data?</p>
+<p>变化的速度原来越快,组件越来越小,与此同时监控解决方案中log data,metrics,status,report还有alters这些东西也一直轰炸我们,他们的规模都在上涨,而我们却没有,我们如何避免被淹没在这些数据中?</p>
+<p>A lot of companies are facing the same problem. They have such a huge amount of data, but can’t get a total unified overview. When problems occur in their IT stack, they don’t know where it originates. Was it a change, an overload, an attack or something else? Based on our experience, we created the <strong>Monitoring Maturity Model</strong>. At which level is your company now?</p>
+<p>很多公司都面临同一个问题,他们都有这么多数据,但是无法得到一个完整的概览,当一个问题出现在他们的it环境中,他们不知道哪里是出问题的源头,到底是一次变更,还是负载过高,或者是一次攻击还是其他事情引起的这次故障？根据我们的经验,我们做了一个<strong>监控成熟度的模型</strong>的评估表,看看你的公司现在处于什么级别？</p>
+<h4 id="Level_1_-_Health_of_your_components">Level 1 - Health of your components</h4><p>At level one you have different components, but monitor solutions at this level only report if they are up or down. If something happens in your IT stack, you will see a lot of red dots and you will probably get a lot of e-mails which say there is something broken. So at level one you will only see the states and alert notifications per (single) component.</p>
+<h4 id="level_1_－_每个被监控组件的健康状态">level 1 － 每个被监控组件的健康状态</h4><p>在1 这个级别,你有不同的被组件,但是你的监控方案只能做到报告这些组件的状态是up 或 down,如果这时候在你的it系统中有一些故障发生,你会看到很多红点警告,还有可能收到很多email,这些email告诉你有些东西坏了.所以在1这个级别你只能看到每个被监控组件的状态,和收到每个被监控组件的报警提醒.</p>
+<h4 id="Level_2_-_In-depth_monitoring_on_different_levels">Level 2 - In-depth monitoring on different levels</h4><p>Most of the companies we’ve seen are at level two of the Monitoring Maturity Model. At this level you are monitoring on different levels and from different angles and sources. Tools like Splunk or Kibana are used for log files analysis. Appdynamics or New Relic are used for Application Performance Monitoring. Finally we have tools like Opsview to see the component’s states of different services. And that’s a good thing, because you need all this kind of data. The more data you have, the more insight you have on the different components. So at this level you are able to get more in-depth insight on the systems your own team is using.</p>
+<p>But what if something fails somewhere deep down in your IT stack, which affects your team? Any change or minor failure in your IT landscape can create a domino effect and eventually stop the delivery of core business functions. Your team only sees their part of the total stack. For this problem, we introduce level three of the Monitoring Maturity Model.</p>
+<h4 id="级别2_－_不同级别的深入监控">级别2 － 不同级别的深入监控</h4><p>我们见到的大多数公司在监控成熟度模型中都处于2级 这个级别,在这个级别,你会从不同的级别和不同的角度还有不同源头分别做监控,像splunk,kibana这些都用来做日志文件分析, Appdynamics 或者New Relic 这些工具用来做应用的性能监控,最后我们会有类似opsview这种工具来看每个被监控组件的不同的服务的状态.这些都是很好的功能,因为你需要所有的这些类型的数据,你数据越多,你会对不同被监控组件的了解越深.所以在这个级别,你会对你的系统有更多的深入了解.</p>
+<p>但是,当一个问题发生在你it系统的特别难发现的地方时候,是否会影响到你的team？任何一个变更或一个小的问题在你的整个it系统中可能会造成一种多米诺骨牌效应,最终影响到你核型业务.你的team只能看到整个架构中属于你们的那一部分.对于这个问题,我们就可以介绍一下级别3了.</p>
+<p><strong>Monitoring Maturity Model</strong></p>
+<p><img src="http://cdn2.hubspot.net/hub/516677/hubfs/Monitor_Maturity_Model_explained.png?t=1439974146337&amp;width=531" alt="img"></p>
+<h4 id="Level_3_-_Create_a_total_overview">Level 3 - Create a total overview</h4><p>At level three we don’t only look at all the states, events and metrics but also look at the dependencies and changes. Therefore you need an overview of your whole IT stack, which will be created using existing data from your available tools. To create this overview you will need data from tools like:</p>
+<ul>
+<li><p>Monitoring tools (AppDynamics, New Relic, Splunk, Graylog2)</p>
+</li>
+<li><p>IT Management tools (Puppet, Jenkins, ServiceNow, XL-Deploy)</p>
+</li>
+<li><p>Incident Management tools (Jira, Pagerduty, Topdesk)</p>
+</li>
+</ul>
+<p>Re-use this existing data from different tools to create the total overview of your whole IT stack. At level three you are able to upgrade your entire organization. Now each team can view their team stack as part of the whole IT stack. So teams have a much easier job finding the cause of a failure.  Also teams are now able to find each other when this is needed the most. This level also helps the company to get a unified overview while letting teams decide which tools they want/need to use.</p>
+<h4 id="级别3_-_做一个完整的概览">级别3 - 做一个完整的概览</h4><p>在级别3这个阶段,我们不不仅要看所有的stats,event,metrics,而且还要看每个被监控对象的依赖对象以及每个东西的变更.所以你需要有一个利用你现在所有数据和工具做出来的整个架构的概览.要做这个概览你需要类似这些类型的数据和工具</p>
+<ul>
+<li>监控工具(ppDynamics, New Relic, Splunk, Graylog2) </li>
+<li>it 管理工具(Puppet, Jenkins, ServiceNow, XL-Deploy)</li>
+<li>事件管理工具(Jira, Pagerduty, Topdesk)</li>
+</ul>
+<p>重用这些以有工具生成的已有数据去生存一个整个系统的完整概览.在级别3,你能升级你的整个组织结构了.现在每个team能以全局的视角看到每个team自己的那一部分.现在这些team能在出问题的时候更容易找到问题发生的原因.而且现在这些team也可以在需要的时候找别的team.让每个team决定他们自己自己需要用活着想用的工具能帮助公司得到一个完整统一的系统概览.</p>
+<h4 id="Level_4_-_Automated_operations">Level 4 - Automated operations</h4><p>Level four is part of our bigger vision, at this level we will be able to:<br>Send alerts before there is a failure<br>Self-heal by for example scaling up or rerouting services before a service is overloaded<br>Abnormality detection<br>Advanced signal processing</p>
+<h4 id="级别4_-_自动化操作">级别4 - 自动化操作</h4><p>级别4是我们大前景的的一部分,在这个级别,我们可以:<br>在发生故障之前发送报警<br>自动修复,在负载过高的时候,自动扩展或者动态重新路由.<br>异常行为检测<br>高级信号处理  </p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/devops/" rel="tag">#devops</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/20/the-monitoring-maturity-model-explained/" rel="prev">the monitoring maturity model explained</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/19/hello-world/" rel="next">Hello World</a>
             
           </div>
         </div>
@@ -314,7 +344,7 @@ Quick">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Level_1_-_Health_of_your_components"><span class="nav-number">1.</span> <span class="nav-text">Level 1 - Health of your components</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level_1_－_每个被监控组件的健康状态"><span class="nav-number">2.</span> <span class="nav-text">level 1 － 每个被监控组件的健康状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Level_2_-_In-depth_monitoring_on_different_levels"><span class="nav-number">3.</span> <span class="nav-text">Level 2 - In-depth monitoring on different levels</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#级别2_－_不同级别的深入监控"><span class="nav-number">4.</span> <span class="nav-text">级别2 － 不同级别的深入监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Level_3_-_Create_a_total_overview"><span class="nav-number">5.</span> <span class="nav-text">Level 3 - Create a total overview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#级别3_-_做一个完整的概览"><span class="nav-number">6.</span> <span class="nav-text">级别3 - 做一个完整的概览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Level_4_-_Automated_operations"><span class="nav-number">7.</span> <span class="nav-text">Level 4 - Automated operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#级别4_-_自动化操作"><span class="nav-number">8.</span> <span class="nav-text">级别4 - 自动化操作</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
