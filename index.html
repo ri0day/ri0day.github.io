@@ -173,6 +173,134 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/" itemprop="url">
+                Eight Terminal Utilities Every OS X Command Line User Should Know
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-31T16:37:12+08:00" content="2015-08-31">
+            2015-08-31
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/tech/" itemprop="url" rel="index">
+                  <span itemprop="name">tech</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>original post：<a href="http://www.mitchchn.me/2014/os-x-terminal" target="_blank" rel="external">http://www.mitchchn.me/2014/os-x-terminal</a></p>
+<h1 id="1-open">1.open</h1><p>1.1 打开一个程序  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /Applications/Safari.app</span><br></pre></td></tr></table></figure>
+<p>1.2 用默认的编辑器打开一个文件  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open <span class="operator">-e</span> mytext.txt</span><br></pre></td></tr></table></figure>
+<p>1.3 用finder打开一个目录(.就是当前目录)  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open .</span><br></pre></td></tr></table></figure>
+<p>1.4 实际上open比较智能,如果你用open打开一个文件他会用系统默认的程序去打开他,等于双击一个文件<br>比如你打开pdf png 等图片他会自动用系统的preview打开.</p>
+<p>另外一个tips 就是如果你在finder中拖动一个文件到terminal里面,会显示这个文件的全路径.</p>
+<h1 id="2-_pbcopy_and_pbpaste">2. pbcopy and pbpaste</h1><p>pbcopy能把标准输出暂存到内存中,pbpaste把pbcopy存在内存中的内容输出  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ <span class="built_in">echo</span> <span class="string">'my text'</span>|pbcopy</span><br><span class="line">MacBook-Pro:Documents min$ pbpaste    </span><br><span class="line">my text</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ pbcopy &lt;realserver</span><br><span class="line">MacBook-Pro:Documents min$ pbpaste</span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment"># chkconfig: 2345 90 60</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h1 id="3-_mdfind">3. mdfind</h1><p>mdfind 就是命令行版的spotlight,spotlight能做到的他都能做到.其主要作用就是搜索你想要搜索的一切,包括文件名,文件里面的内容,文件元数据里面的信息等.</p>
+<p>####mdfind 查找指定查询范围(-onlyin指定只搜索这个目录里面的内容)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ mdfind -onlyin ~/Downloads/ python</span><br><span class="line">/Users/min/Downloads/goagent/proxy.pac</span><br><span class="line">/Users/min/Downloads/Python%E5%AD%A6%E4%B9%A0%E6%<span class="number">89</span>%<span class="number">8</span>B%E5%<span class="number">86</span>%<span class="number">8</span>C%<span class="number">28</span>%E7%AC%AC4%E7%<span class="number">89</span>%<span class="number">88</span>%<span class="number">29</span>.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/FacebookXDBPerconaLive2015.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Instant monitoring.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Bootstrapping databases <span class="keyword">in</span> a single <span class="built_in">command</span>_ elastic provisioning <span class="keyword">for</span> the win.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Ansible.pdf</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>####mdfind之所以能这么快查找是mdutil这个工具在系统里面对所有文件做了一个索引.mdutil -E可以删除之前的数据重建索引.  </p>
+<h1 id="4-_screencapture">4. screencapture</h1><p>screencapture就是截图命令,快捷键就是 cmd + shift + 3   和  cmd + shift + 4  </p>
+<p>4.1全屏截图,并打开系统的mail app,把图片贴到邮件内容里面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -C -M image.png</span><br></pre></td></tr></table></figure>
+<p>4.2全屏截图,并用preview打开  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -C -P image.png</span><br></pre></td></tr></table></figure>
+<p>4.3 选择截图,并暂存到剪切版.<br>运行这个命令以后,会弹出一个照相机式的鼠标指针,你可以选择需要截图的窗口,左键选择以后,这张图就存在剪切板里面了,随时可以粘贴了.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -c -W</span><br></pre></td></tr></table></figure>
+<h1 id="5-_launchctl">5. launchctl</h1><p>launchctl 可以让你已命令行的方式与系统的init系统lauchd交互.用launchctl可以控制机器上的服务的开关以及系统启动的时候服务的状态.等同于目前比较流行的linux上的systemd系统下的systemctl</p>
+<p>5.1 查看系统启动了哪些服务  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ launchctl list</span><br><span class="line">PID	Status	Label</span><br><span class="line">-	<span class="number">0</span>	com.apple.CoreAuthentication.daemon</span><br><span class="line">-	<span class="number">0</span>	com.apple.quicklook</span><br><span class="line">-	<span class="number">0</span>	com.apple.parentalcontrols.check</span><br><span class="line"><span class="number">347</span>	<span class="number">0</span>	com.apple.Finder</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>5.2 launchctl load和unload一个service</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist</span><br></pre></td></tr></table></figure>
+<p>存放系统服务的配置目录有如下: </p>
+<ul>
+<li>~/Library/LaunchAgents    </li>
+<li>/Library/LaunchAgents          </li>
+<li>/Library/LaunchDaemons</li>
+<li>/System/Library/LaunchAgents</li>
+<li>/System/Library/LaunchDaemons</li>
+</ul>
+<h1 id="6-_say">6. say</h1><p>say 就是一个把输入的文字转换成音频输出,他支持很多语言.  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ say <span class="string">"我是你爸爸"</span></span><br><span class="line">MacBook-Pro:Documents min$ say <span class="string">"wtf"</span></span><br></pre></td></tr></table></figure>
+<p>读入一个文件,把音频输出成一个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">say <span class="operator">-f</span> mynovel.txt -o myaudiobook.aiff</span><br></pre></td></tr></table></figure></p>
+<h1 id="7-_diskutil">7. diskutil</h1><p>diskutil就是macosx里面的”磁盘工具”的命令行版本.<br>可以格式化,分区,合并分区,添加删除磁盘和分区等.<br>不建议随意使用这个工具,除非你懂你在干什么.</p>
+<h1 id="8-_brew">8. brew</h1><p>确切来说brew 就是macosx下的第三方包管理软件,等同于redhat下的yum 和debian下的apt<br>安装brew比较简单</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>安装完了以后使用就更加简单了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install xxx</span><br><span class="line">brew uninstall xxx</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/20/the-monitoring-maturity-model-explained/" itemprop="url">
                 the monitoring maturity model explained
               </a>
@@ -388,7 +516,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -402,7 +530,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
