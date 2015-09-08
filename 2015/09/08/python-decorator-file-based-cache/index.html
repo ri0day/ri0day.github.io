@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="macosx," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -37,37 +37,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="original post：http://www.mitchchn.me/2014/os-x-terminal
-1.open1.1 打开一个程序  
-1open /Applications/Safari.app
-1.2 用默认的编辑器打开一个文件  
-1open -e mytext.txt
-1.3 用finder打开一个目录(.就是当前目录)  
-1open .
-1.4 实际上open比较智能,如">
+<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435from hashlib import sha1import os,pickle,timedef cache_disk(seconds = 900, cache_folder=&quot;/tmp&quot;):    def doCache(f):        def inner_functi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Eight Terminal Utilities Every OS X Command Line User Should Know">
-<meta property="og:url" content="http://ri0day.github.io/2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/index.html">
+<meta property="og:title" content="python decorator - file based cache ">
+<meta property="og:url" content="http://ri0day.github.io/2015/09/08/python-decorator-file-based-cache/index.html">
 <meta property="og:site_name" content="ri0day">
-<meta property="og:description" content="original post：http://www.mitchchn.me/2014/os-x-terminal
-1.open1.1 打开一个程序  
-1open /Applications/Safari.app
-1.2 用默认的编辑器打开一个文件  
-1open -e mytext.txt
-1.3 用finder打开一个目录(.就是当前目录)  
-1open .
-1.4 实际上open比较智能,如">
-<meta property="og:updated_time" content="2015-08-31T08:39:45.000Z">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435from hashlib import sha1import os,pickle,timedef cache_disk(seconds = 900, cache_folder=&quot;/tmp&quot;):    def doCache(f):        def inner_functi">
+<meta property="og:updated_time" content="2015-09-08T10:15:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eight Terminal Utilities Every OS X Command Line User Should Know">
-<meta name="twitter:description" content="original post：http://www.mitchchn.me/2014/os-x-terminal
-1.open1.1 打开一个程序  
-1open /Applications/Safari.app
-1.2 用默认的编辑器打开一个文件  
-1open -e mytext.txt
-1.3 用finder打开一个目录(.就是当前目录)  
-1open .
-1.4 实际上open比较智能,如">
+<meta name="twitter:title" content="python decorator - file based cache ">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435from hashlib import sha1import os,pickle,timedef cache_disk(seconds = 900, cache_folder=&quot;/tmp&quot;):    def doCache(f):        def inner_functi">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -77,7 +56,7 @@
   };
 </script>
 
-  <title> Eight Terminal Utilities Every OS X Command Line User Should Know | ri0day </title>
+  <title> python decorator - file based cache  | ri0day </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -193,7 +172,7 @@
           
           
             
-              Eight Terminal Utilities Every OS X Command Line User Should Know
+              python decorator - file based cache 
             
           
         </h1>
@@ -202,8 +181,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T16:37:12+08:00" content="2015-08-31">
-            2015-08-31
+          <time itemprop="dateCreated" datetime="2015-09-08T16:38:34+08:00" content="2015-09-08">
+            2015-09-08
           </time>
         </span>
 
@@ -228,8 +207,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/" itemprop="commentsCount"></span>
+              <a href="/2015/09/08/python-decorator-file-based-cache/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/08/python-decorator-file-based-cache/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -243,51 +222,9 @@
       
 
       
-        <span itemprop="articleBody"><p>original post：<a href="http://www.mitchchn.me/2014/os-x-terminal" target="_blank" rel="external">http://www.mitchchn.me/2014/os-x-terminal</a></p>
-<h1 id="1-open">1.open</h1><p>1.1 打开一个程序  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /Applications/Safari.app</span><br></pre></td></tr></table></figure>
-<p>1.2 用默认的编辑器打开一个文件  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open <span class="operator">-e</span> mytext.txt</span><br></pre></td></tr></table></figure>
-<p>1.3 用finder打开一个目录(.就是当前目录)  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open .</span><br></pre></td></tr></table></figure>
-<p>1.4 实际上open比较智能,如果你用open打开一个文件他会用系统默认的程序去打开他,等于双击一个文件<br>比如你打开pdf png 等图片他会自动用系统的preview打开.</p>
-<p>另外一个tips 就是如果你在finder中拖动一个文件到terminal里面,会显示这个文件的全路径.</p>
-<h1 id="2-_pbcopy_and_pbpaste">2. pbcopy and pbpaste</h1><p>pbcopy能把标准输出暂存到内存中,pbpaste把pbcopy存在内存中的内容输出  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ <span class="built_in">echo</span> <span class="string">'my text'</span>|pbcopy</span><br><span class="line">MacBook-Pro:Documents min$ pbpaste    </span><br><span class="line">my text</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ pbcopy &lt;realserver</span><br><span class="line">MacBook-Pro:Documents min$ pbpaste</span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment"># chkconfig: 2345 90 60</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<h1 id="3-_mdfind">3. mdfind</h1><p>mdfind 就是命令行版的spotlight,spotlight能做到的他都能做到.其主要作用就是搜索你想要搜索的一切,包括文件名,文件里面的内容,文件元数据里面的信息等.</p>
-<p>####mdfind 查找指定查询范围(-onlyin指定只搜索这个目录里面的内容)：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ mdfind -onlyin ~/Downloads/ python</span><br><span class="line">/Users/min/Downloads/goagent/proxy.pac</span><br><span class="line">/Users/min/Downloads/Python%E5%AD%A6%E4%B9%A0%E6%<span class="number">89</span>%<span class="number">8</span>B%E5%<span class="number">86</span>%<span class="number">8</span>C%<span class="number">28</span>%E7%AC%AC4%E7%<span class="number">89</span>%<span class="number">88</span>%<span class="number">29</span>.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/FacebookXDBPerconaLive2015.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Instant monitoring.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Bootstrapping databases <span class="keyword">in</span> a single <span class="built_in">command</span>_ elastic provisioning <span class="keyword">for</span> the win.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Ansible.pdf</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>####mdfind之所以能这么快查找是mdutil这个工具在系统里面对所有文件做了一个索引.mdutil -E可以删除之前的数据重建索引.  </p>
-<h1 id="4-_screencapture">4. screencapture</h1><p>screencapture就是截图命令,快捷键就是 cmd + shift + 3   和  cmd + shift + 4  </p>
-<p>4.1全屏截图,并打开系统的mail app,把图片贴到邮件内容里面</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -C -M image.png</span><br></pre></td></tr></table></figure>
-<p>4.2全屏截图,并用preview打开  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -C -P image.png</span><br></pre></td></tr></table></figure>
-<p>4.3 选择截图,并暂存到剪切版.<br>运行这个命令以后,会弹出一个照相机式的鼠标指针,你可以选择需要截图的窗口,左键选择以后,这张图就存在剪切板里面了,随时可以粘贴了.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -c -W</span><br></pre></td></tr></table></figure>
-<h1 id="5-_launchctl">5. launchctl</h1><p>launchctl 可以让你已命令行的方式与系统的init系统lauchd交互.用launchctl可以控制机器上的服务的开关以及系统启动的时候服务的状态.等同于目前比较流行的linux上的systemd系统下的systemctl</p>
-<p>5.1 查看系统启动了哪些服务  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ launchctl list</span><br><span class="line">PID	Status	Label</span><br><span class="line">-	<span class="number">0</span>	com.apple.CoreAuthentication.daemon</span><br><span class="line">-	<span class="number">0</span>	com.apple.quicklook</span><br><span class="line">-	<span class="number">0</span>	com.apple.parentalcontrols.check</span><br><span class="line"><span class="number">347</span>	<span class="number">0</span>	com.apple.Finder</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>5.2 launchctl load和unload一个service</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist</span><br></pre></td></tr></table></figure>
-<p>存放系统服务的配置目录有如下: </p>
-<ul>
-<li>~/Library/LaunchAgents    </li>
-<li>/Library/LaunchAgents          </li>
-<li>/Library/LaunchDaemons</li>
-<li>/System/Library/LaunchAgents</li>
-<li>/System/Library/LaunchDaemons</li>
-</ul>
-<h1 id="6-_say">6. say</h1><p>say 就是一个把输入的文字转换成音频输出,他支持很多语言.  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ say <span class="string">"我是你爸爸"</span></span><br><span class="line">MacBook-Pro:Documents min$ say <span class="string">"wtf"</span></span><br></pre></td></tr></table></figure>
-<p>读入一个文件,把音频输出成一个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">say <span class="operator">-f</span> mynovel.txt -o myaudiobook.aiff</span><br></pre></td></tr></table></figure></p>
-<h1 id="7-_diskutil">7. diskutil</h1><p>diskutil就是macosx里面的”磁盘工具”的命令行版本.<br>可以格式化,分区,合并分区,添加删除磁盘和分区等.<br>不建议随意使用这个工具,除非你懂你在干什么.</p>
-<h1 id="8-_brew">8. brew</h1><p>确切来说brew 就是macosx下的第三方包管理软件,等同于redhat下的yum 和debian下的apt<br>安装brew比较简单</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>安装完了以后使用就更加简单了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install xxx</span><br><span class="line">brew uninstall xxx</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha1</span><br><span class="line"><span class="keyword">import</span> os,pickle,time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cache_disk</span><span class="params">(seconds = <span class="number">900</span>, cache_folder=<span class="string">"/tmp"</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">doCache</span><span class="params">(f)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">inner_function</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            <span class="comment"># calculate a cache key based on the decorated method signature</span></span><br><span class="line">            key = sha1(str(f.__module__) + str(f.__name__) + str(args) + str(kwargs)).hexdigest()</span><br><span class="line">            filepath = os.path.join(cache_folder, key)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># verify that the cached object exists and is less than $seconds old</span></span><br><span class="line">            <span class="keyword">if</span> os.path.exists(filepath):</span><br><span class="line">                modified = os.path.getmtime(filepath)</span><br><span class="line">                age_seconds = time.time() - modified</span><br><span class="line">                <span class="keyword">if</span> age_seconds &lt; seconds:</span><br><span class="line">                    <span class="keyword">return</span> pickle.load(open(filepath, <span class="string">"rb"</span>))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># call the decorated function...</span></span><br><span class="line">            result = f(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># ... and save the cached object for next time</span></span><br><span class="line">            pickle.dump(result, open(filepath, <span class="string">"wb"</span>))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        <span class="keyword">return</span> inner_function</span><br><span class="line">    <span class="keyword">return</span> doCache</span><br><span class="line"></span><br><span class="line"><span class="decorator">@cache_disk(seconds = 900, cache_folder="/tmp")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something_time_consuming</span><span class="params">(n,a)</span>:</span></span><br><span class="line">    d = &#123;&#125;</span><br><span class="line">    time.sleep(<span class="number">10</span>)</span><br><span class="line">    d[<span class="string">'name'</span>] = n</span><br><span class="line">    d[<span class="string">'age'</span>] = int(a)</span><br><span class="line">    <span class="keyword">return</span> d</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> do_something_time_consuming(sys.argv[<span class="number">1</span>],sys.argv[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="let’s_test">let’s test</h4><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:~ min$ time python decorator_cache.py wu 21</span><br><span class="line">&#123;'age': 21, 'name': 'wu'&#125;</span><br><span class="line"></span><br><span class="line">real	<span class="number">0m10.032</span>s</span><br><span class="line">user	<span class="number">0m0.017</span>s</span><br><span class="line">sys	<span class="number">0m0.009</span>s</span><br><span class="line"></span><br><span class="line">MacBook-Pro:~ min$ time python decorator_cache.py wu 21</span><br><span class="line">&#123;'age': 21, 'name': 'wu'&#125;</span><br><span class="line"></span><br><span class="line">real	<span class="number">0m0.028</span>s</span><br><span class="line">user	<span class="number">0m0.017</span>s</span><br><span class="line">sys	<span class="number">0m0.009</span>s</span><br><span class="line">MacBook-Pro:~ min$ time python decorator_cache.py wu 21</span><br><span class="line">&#123;'age': 21, 'name': 'wu'&#125;</span><br><span class="line"></span><br><span class="line">real	<span class="number">0m0.028</span>s</span><br><span class="line">user	<span class="number">0m0.017</span>s</span><br><span class="line">sys	<span class="number">0m0.009</span>s</span><br><span class="line"></span><br><span class="line">MacBook-Pro:~ min$ ls /tmp</span><br><span class="line"><span class="number">33e9d0f6</span>e<span class="number">649a4c122</span>9580fca2b2d9ca<span class="number">3d770731</span>               e<span class="number">92558a7</span>cd5dd<span class="number">5c082f72</span>99486df<span class="number">5516f615</span>c0f0</span><br><span class="line"><span class="number">3412471a14</span>fb<span class="number">92871553580</span><span class="number">53089a7d66</span>b8d9fa</span><br></pre></td></tr></table></figure>
+<p>可以看到第二次传入相同参数的时候发现不再需要等10秒就能得到结果了,直接从file cache取到了结果.<br>在tmp目录也看到了对应的key生成的MD5文件名的cache文件.<br>这个装饰器可以适用于缓存比较小的结果集.如果结果集大了,python pickle模块序列化和反序列化一个比较大的对象是比较耗时的.<br>另外,如果做file based cache 可以把目录设置在 内存里面 比如/dev/shm这种里面.会加速i/o .</p>
 </span>
       
     </div>
@@ -296,7 +233,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/macosx/" rel="tag">#macosx</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -305,13 +242,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/09/08/python-decorator-file-based-cache/" rel="prev">python decorator - file based cache </a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/20/the-monitoring-maturity-model-explained/" rel="next">the monitoring maturity model explained</a>
+              <a href="/2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/" rel="next">Eight Terminal Utilities Every OS X Command Line User Should Know</a>
             
           </div>
         </div>
@@ -336,8 +271,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/"
-                   data-title="Eight Terminal Utilities Every OS X Command Line User Should Know" data-url="http://ri0day.github.io/2015/08/31/Eight-Terminal-Utilities-Every-OS-X-Command-Line-User-Should-Know/">
+              <div class="ds-thread" data-thread-key="2015/09/08/python-decorator-file-based-cache/"
+                   data-title="python decorator - file based cache " data-url="http://ri0day.github.io/2015/09/08/python-decorator-file-based-cache/">
               </div>
             
           </div>
@@ -419,7 +354,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-open"><span class="nav-number">1.</span> <span class="nav-text">1.open</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-_pbcopy_and_pbpaste"><span class="nav-number">2.</span> <span class="nav-text">2. pbcopy and pbpaste</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-_mdfind"><span class="nav-number">3.</span> <span class="nav-text">3. mdfind</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-_screencapture"><span class="nav-number">4.</span> <span class="nav-text">4. screencapture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-_launchctl"><span class="nav-number">5.</span> <span class="nav-text">5. launchctl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-_say"><span class="nav-number">6.</span> <span class="nav-text">6. say</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-_diskutil"><span class="nav-number">7.</span> <span class="nav-text">7. diskutil</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-_brew"><span class="nav-number">8.</span> <span class="nav-text">8. brew</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#let’s_test"><span class="nav-number">1.</span> <span class="nav-text">let’s test</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
