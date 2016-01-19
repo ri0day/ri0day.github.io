@@ -173,6 +173,121 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/19/nginx-conf-parse-by-python/" itemprop="url">
+                nginx conf parse by python
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-19T15:27:00+08:00" content="2016-01-19">
+            2016-01-19
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/tech/" itemprop="url" rel="index">
+                  <span itemprop="name">tech</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/19/nginx-conf-parse-by-python/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/nginx-conf-parse-by-python/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>假设现在你接手一个nginx反向代理.你如何梳理出一个概览,知道目前代理了哪些站点.后端是哪些,有哪些url在nginx做了处理.  </p>
+<h5 id="整理出一个类似如下的表格">整理出一个类似如下的表格</h5><table>
+<thead>
+<tr>
+<th>server_names</th>
+<th style="text-align:center">backend</th>
+<th style="text-align:right">location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sitea.com</td>
+<td style="text-align:center">backenda</td>
+<td style="text-align:right">/auth</td>
+</tr>
+<tr>
+<td>siteb.com</td>
+<td style="text-align:center">backendb</td>
+<td style="text-align:right">/rpc</td>
+</tr>
+<tr>
+<td>sitec.com</td>
+<td style="text-align:center">backendc</td>
+<td style="text-align:right">/x/y/z</td>
+</tr>
+</tbody>
+</table>
+<p>简单的办法就是用shell grep一些关键字,然后得出一些初步信息.<br>但是用shell格式化还有去除一些多余的字符串是比较琐碎的事情.<br>于是我写了一个简单的python 脚本来做这个.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ngx_Conf_Summary</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,conf_file_path)</span>:</span></span><br><span class="line">        self.r = &#123;&#125;</span><br><span class="line">        self.backend = []</span><br><span class="line">        self.conf_path = conf_file_path</span><br><span class="line">        <span class="keyword">with</span> open(self.conf_path,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            self.conf_text = f.read().strip()</span><br><span class="line">        self.backend_pattern = <span class="string">r'upstream +(.+)+ &#123;([^&#125;]*)&#125;'</span></span><br><span class="line">        <span class="comment">#self.backend_host_pattern = r'\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;:\d+|\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;'</span></span><br><span class="line">        self.backend_host_pattern = <span class="string">r'server+\s+.+[:]\d+|server+\s+[a-z1-9.+\w]+'</span></span><br><span class="line">        self.location_pattern = <span class="string">r'location (.+)&#123;'</span></span><br><span class="line">        self.server_name_pattern = <span class="string">r'server_name (.+);'</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"-----parse conf file: %s------"</span>%self.conf_path</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_server_names</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(re.findall(<span class="string">r'server_name (.+);'</span>,self.conf_text)).split()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_backend_hosts</span><span class="params">(self)</span>:</span></span><br><span class="line">        backend_list = re.match(self.backend_pattern,self.conf_text).group(<span class="number">2</span>).split(<span class="string">';'</span>)</span><br><span class="line">        <span class="keyword">for</span> backend_text <span class="keyword">in</span> backend_list:</span><br><span class="line">            <span class="keyword">if</span> backend_text.strip().startswith(<span class="string">'#'</span>) <span class="keyword">or</span> <span class="keyword">not</span> backend_text:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                backend_host = re.findall(self.backend_host_pattern,backend_text.strip())</span><br><span class="line">                backend_host = <span class="string">""</span>.join(backend_host).replace(<span class="string">'server '</span>,<span class="string">""</span>)</span><br><span class="line">                <span class="keyword">if</span> backend_host:</span><br><span class="line">                    self.backend.append(backend_host)</span><br><span class="line">        <span class="keyword">return</span> self.backend</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_location</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span>  re.findall(<span class="string">r'location (.+)&#123;'</span>,self.conf_text)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">summary</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.r[<span class="string">'file'</span>] = self.conf_path</span><br><span class="line">        self.r[<span class="string">'server_names'</span>] = self.get_server_names()</span><br><span class="line">        self.r[<span class="string">'location'</span>] = self.get_location()</span><br><span class="line">                self.r[<span class="string">'backends'</span>] = self.get_backend_hosts()</span><br><span class="line">        <span class="keyword">return</span> self.r</span><br><span class="line"></span><br><span class="line">ngx_conf=Ngx_Conf_Summary(<span class="string">'/tmp/2.vhost'</span>)</span><br><span class="line"><span class="keyword">print</span> ngx_conf.summary()</span><br></pre></td></tr></table></figure>
+<h5 id="输出是这样的:">输出是这样的:</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacBook-<span class="string">Pro:</span>~ min$ python <span class="regexp">~/pycode/</span>github<span class="regexp">/gangster/</span>ngx_conf_parse.py</span><br><span class="line">-----parse conf <span class="string">file:</span> <span class="regexp">/tmp/</span><span class="number">2.</span>vhost------</span><br><span class="line">&#123;<span class="string">'server_names'</span>: [<span class="string">'2012.site.com'</span>, <span class="string">'2015.site.com'</span>], <span class="string">'backends'</span>: [<span class="string">'10.0.7.10'</span>, <span class="string">'upstreamhost1'</span>, <span class="string">'upstreamvhost.v2.com'</span>, <span class="string">'10.0.7.5:80'</span>, <span class="string">'10.0.7.7:8081'</span>, <span class="string">'10.0.7.8'</span>], <span class="string">'location'</span>: [<span class="string">'= /50x.html '</span>, <span class="string">'~ /\\.ht '</span>, <span class="string">'~* ^/(busi|Business)/.*\\.(js|css|png|jpg|gif|ico|zip|rar|flv)$ '</span>, <span class="string">'~* ^/.*\\.(js|css|png|jpg|gif)$ '</span>, <span class="string">'/ '</span>, <span class="string">'^~ /do_not_delete/ '</span>, <span class="string">'~ /purge(/.*)  '</span>, <span class="string">'/xy '</span>], <span class="string">'file'</span>: <span class="string">'/tmp/2.vhost'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>这样能解析一个文件.但是解析多个也不难了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> ngx_conf_parse</span><br><span class="line">conf_file_list = glob.glob(<span class="string">r"/usr/local/nginx/conf/*/*.vhost"</span>)</span><br><span class="line"><span class="keyword">for</span> conf <span class="keyword">in</span> conf_file_list:</span><br><span class="line">    ngx_conf_parse(conf)</span><br><span class="line">    <span class="keyword">print</span> ngx_conf_parse.summary()</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/08/python-decorator-file-based-cache/" itemprop="url">
                 python decorator - file based cache 
               </a>
@@ -325,10 +440,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ <span class="built_in">echo</span> <span class="string">'my text'</span>|pbcopy</span><br><span class="line">MacBook-Pro:Documents min$ pbpaste    </span><br><span class="line">my text</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ pbcopy &lt;realserver</span><br><span class="line">MacBook-Pro:Documents min$ pbpaste</span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment"># chkconfig: 2345 90 60</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 <h1 id="3-_mdfind">3. mdfind</h1><p>mdfind 就是命令行版的spotlight,spotlight能做到的他都能做到.其主要作用就是搜索你想要搜索的一切,包括文件名,文件里面的内容,文件元数据里面的信息等.</p>
-<p>####mdfind 查找指定查询范围(-onlyin指定只搜索这个目录里面的内容)：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ mdfind -onlyin ~/Downloads/ python</span><br><span class="line">/Users/min/Downloads/goagent/proxy.pac</span><br><span class="line">/Users/min/Downloads/Python%E5%AD%A6%E4%B9%A0%E6%<span class="number">89</span>%<span class="number">8</span>B%E5%<span class="number">86</span>%<span class="number">8</span>C%<span class="number">28</span>%E7%AC%AC4%E7%<span class="number">89</span>%<span class="number">88</span>%<span class="number">29</span>.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/FacebookXDBPerconaLive2015.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Instant monitoring.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Bootstrapping databases <span class="keyword">in</span> a single <span class="built_in">command</span>_ elastic provisioning <span class="keyword">for</span> the win.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Ansible.pdf</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>####mdfind之所以能这么快查找是mdutil这个工具在系统里面对所有文件做了一个索引.mdutil -E可以删除之前的数据重建索引.  </p>
-<h1 id="4-_screencapture">4. screencapture</h1><p>screencapture就是截图命令,快捷键就是 cmd + shift + 3   和  cmd + shift + 4  </p>
+<h4 id="mdfind_查找指定查询范围(-onlyin指定只搜索这个目录里面的内容)：">mdfind 查找指定查询范围(-onlyin指定只搜索这个目录里面的内容)：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MacBook-Pro:Documents min$ mdfind -onlyin ~/Downloads/ python</span><br><span class="line">/Users/min/Downloads/goagent/proxy.pac</span><br><span class="line">/Users/min/Downloads/Python%E5%AD%A6%E4%B9%A0%E6%<span class="number">89</span>%<span class="number">8</span>B%E5%<span class="number">86</span>%<span class="number">8</span>C%<span class="number">28</span>%E7%AC%AC4%E7%<span class="number">89</span>%<span class="number">88</span>%<span class="number">29</span>.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/FacebookXDBPerconaLive2015.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Instant monitoring.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Bootstrapping databases <span class="keyword">in</span> a single <span class="built_in">command</span>_ elastic provisioning <span class="keyword">for</span> the win.pdf</span><br><span class="line">/Users/min/Downloads/<span class="number">00</span>_0_0_Percona Live <span class="number">2015</span>/Ansible.pdf</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h4 id="mdfind之所以能这么快查找是mdutil这个工具在系统里面对所有文件做了一个索引-mdutil_-E可以删除之前的数据重建索引-">mdfind之所以能这么快查找是mdutil这个工具在系统里面对所有文件做了一个索引.mdutil -E可以删除之前的数据重建索引.</h4><h1 id="4-_screencapture">4. screencapture</h1><p>screencapture就是截图命令,快捷键就是 cmd + shift + 3   和  cmd + shift + 4  </p>
 <p>4.1全屏截图,并打开系统的mail app,把图片贴到邮件内容里面</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screencapture -C -M image.png</span><br></pre></td></tr></table></figure>
 <p>4.2全屏截图,并用preview打开  </p>
@@ -602,7 +715,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -650,7 +763,7 @@
       <div class="footer-inner"> <div class="copyright" >
   
   &copy; &nbsp; 
-  <span itemprop="copyrightYear">2015</span>
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>
