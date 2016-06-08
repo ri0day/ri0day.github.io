@@ -173,6 +173,91 @@
           
           
             
+              <a class="post-title-link" href="/2016/06/08/mysql-prompt-trick/" itemprop="url">
+                未命名
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-06-08T15:18:01+08:00" content="2016-06-08">
+            2016-06-08
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/06/08/mysql-prompt-trick/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/08/mysql-prompt-trick/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>title: mysql prompt trick<br>date: 2016-06-08 14:50:37<br>tags:[mysql]</p>
+<h2 id="categories:tech">categories:tech  </h2><h3 id="mysql和其他shell一样,可以自定义终端提示符,这个可能都知道-有3种方法实现">mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现</h3><h3 id="1-_设置系统变量">1. 设置系统变量</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export MYSQL_PS1='<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>'</span><br></pre></td></tr></table></figure>
+<h3 id="2-_在my-cnf设置">2. 在my.cnf设置</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="special">[</span>client<span class="special">]</span>  </span><br><span class="line">prompt=<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-_传prompt参数到mysql_命令行">3. 传prompt参数到mysql 命令行</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -pxxxx -h127.0.0.1 --prompt='<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>'</span><br></pre></td></tr></table></figure>
+<p>这3种方法在一个机器只有一个mysql 实例的时候都可以适用  </p>
+<h3 id="问题来了">问题来了</h3><p>当一个机器存在2个以上实例,而且有主从关系。我们需要标注我们当前登录的是主库还是从库<br>当这个需求出现后,如果使用设置系统变量的方法去实现是比较麻烦的.<br>需要写一些脚本判断当前的库是主库还是从库,然后设置prompt变量  </p>
+<p>如果用传统的设置在my.cnf的方法,他就是全局的.无法识别登录的是哪个实例  </p>
+<p>用prompt参数传入mysql命令行明显也不是很好的办法,每次登录要输入一大堆难输入的字符串,还要记住哪个实例是主库或者从库  </p>
+<p>到这里经过一些联想,发觉,既然mysql有一个机器运行多个实例的mysqld_multi管理工具<br>他的工作原理就是读取my.cnf里面的section的配置<br>然后去启动和关闭mysqld进程的,既然他能从用户输入的参数定位到my.cnf里面的section,mysql应该是实现了这个功能的.<br>经过一番google,确实发现一个不怎么常用的参数’–defaults-group-suffix=’就是实现去读取自定义的section的.  </p>
+<h3 id="他的原理是这样的:">他的原理是这样的:</h3><p>如果你指定<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#37027;&#20040;&#20182;&#20250;&#21435;my.cnf&#35835;&#21462; [mysql_good] section  &#10;&#10;&#21040;&#36825;&#37324;,&#25105;&#20204;&#30340;&#23454;&#29616;&#26041;&#27861;&#23601;&#26126;&#26391;&#20102;&#65306;    &#10;&#37197;&#32622;2&#20010;section,&#19968;&#20010;```[mysql_master]```&#21644;```[mysql_slave]``` ,&#28982;&#21518;&#30331;&#24405;&#30340;&#26102;&#20505;&#20256;suffix&#21442;&#25968;&#23601;&#21487;&#20197;&#20102;  &#10;&#10;### &#26041;&#26696;&#22914;&#19979;&#10;&#22312; my.cnf&#28155;&#21152;:</span><br></pre></td></tr></table></figure></p>
+<p>[mysql_master]<br>socket=/tmp/mysql_3306.sock<br>prompt=’\u@\h:\p (\d)-[master] &gt; ‘</p>
+<p>[mysql_slave]<br>user=root<br>socket=/tmp/mysql_3307.sock<br>prompt=’\u@\h:\p (\d)-[slave] &gt; ‘<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 登录的方式</span></span><br></pre></td></tr></table></figure></p>
+<p>[root@localhost ~]# mysql -uroot -p –defaults-group-suffix=’_slave’<br>root@localhost:mysql_3307.sock ((none))-[slave] &gt; </p>
+<p>[root@localhost ~]# mysql -uroot -p –defaults-group-suffix=’_master’<br>root@localhost:mysql_3306.sock ((none))-[master] &gt;<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 简化一下,做一个alias</span></span><br></pre></td></tr></table></figure></p>
+<p>[root@localhost ~]#vim ~/.bashrc<br>alias mysqlmaster=’/usr/bin/mysql -uroot -p –defaults-group-suffix=_master’<br>alias mysqlslave=’/usr/bin/mysql -uroot -p –defaults-group-suffix=_slave’</p>
+<p>[root@localhost ~]#source ~/.bashrc<br>```</p>
+<h3 id="参考连接:">参考连接:</h3><p><a href="https://dev.mysql.com/doc/refman/5.5/en/option-file-options.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.5/en/option-file-options.html</a><br><a href="https://www.quora.com/Is-there-a-way-to-save-default-MySQL-connection-parameters-in-a-configuration-file" target="_blank" rel="external">https://www.quora.com/Is-there-a-way-to-save-default-MySQL-connection-parameters-in-a-configuration-file</a></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/19/nginx-conf-parse-by-python/" itemprop="url">
                 nginx conf parse by python
               </a>
@@ -585,83 +670,6 @@
 <p>重用这些以有工具生成的已有数据去生存一个整个系统的完整概览.在级别3,你能升级你的整个组织结构了.现在每个team能以全局的视角看到每个team自己的那一部分.现在这些team能在出问题的时候更容易找到问题发生的原因.而且现在这些team也可以在需要的时候找别的team.让每个team决定他们自己自己需要用活着想用的工具能帮助公司得到一个完整统一的系统概览.</p>
 <h4 id="Level_4_-_Automated_operations">Level 4 - Automated operations</h4><p>Level four is part of our bigger vision, at this level we will be able to:<br>Send alerts before there is a failure<br>Self-heal by for example scaling up or rerouting services before a service is overloaded<br>Abnormality detection<br>Advanced signal processing</p>
 <h4 id="级别4_-_自动化操作">级别4 - 自动化操作</h4><p>级别4是我们大前景的的一部分,在这个级别,我们可以:<br>在发生故障之前发送报警<br>自动修复,在负载过高的时候,自动扩展或者动态重新路由.<br>异常行为检测<br>高级信号处理  </p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/19/hello-world/" itemprop="url">
-                Hello World
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-19T16:10:02+08:00" content="2015-08-19">
-            2015-08-19
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/08/19/hello-world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/19/hello-world/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 </span>
         
       
