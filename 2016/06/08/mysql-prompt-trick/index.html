@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -37,22 +37,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="title: mysql prompt trickdate: 2016-06-08 14:50:37tags:[mysql]
-categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现1. 设置系统变量1export MYSQL_PS1=&apos;\u@\h@\p [\d]&apos;
-2. 在my.cnf设置12[client]  prompt=\u@\">
+<meta name="description" content="mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现1. 设置系统变量1export MYSQL_PS1=&apos;\u@\h@\p [\d]&apos;
+2. 在my.cnf设置12[client]  prompt=\u@\h@\p [\d]&amp;gt;
+3. 传prompt参数到mysql 命令行1mysql -uroot -pxxxx -h127.0.0.1 --prompt=&apos;\">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ri0day">
+<meta property="og:title" content="mysql prompt trick ">
 <meta property="og:url" content="http://ri0day.github.io/2016/06/08/mysql-prompt-trick/index.html">
 <meta property="og:site_name" content="ri0day">
-<meta property="og:description" content="title: mysql prompt trickdate: 2016-06-08 14:50:37tags:[mysql]
-categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现1. 设置系统变量1export MYSQL_PS1=&apos;\u@\h@\p [\d]&apos;
-2. 在my.cnf设置12[client]  prompt=\u@\">
-<meta property="og:updated_time" content="2016-06-08T07:18:01.956Z">
+<meta property="og:description" content="mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现1. 设置系统变量1export MYSQL_PS1=&apos;\u@\h@\p [\d]&apos;
+2. 在my.cnf设置12[client]  prompt=\u@\h@\p [\d]&amp;gt;
+3. 传prompt参数到mysql 命令行1mysql -uroot -pxxxx -h127.0.0.1 --prompt=&apos;\">
+<meta property="og:updated_time" content="2016-06-08T07:38:17.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ri0day">
-<meta name="twitter:description" content="title: mysql prompt trickdate: 2016-06-08 14:50:37tags:[mysql]
-categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现1. 设置系统变量1export MYSQL_PS1=&apos;\u@\h@\p [\d]&apos;
-2. 在my.cnf设置12[client]  prompt=\u@\">
+<meta name="twitter:title" content="mysql prompt trick ">
+<meta name="twitter:description" content="mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现1. 设置系统变量1export MYSQL_PS1=&apos;\u@\h@\p [\d]&apos;
+2. 在my.cnf设置12[client]  prompt=\u@\h@\p [\d]&amp;gt;
+3. 传prompt参数到mysql 命令行1mysql -uroot -pxxxx -h127.0.0.1 --prompt=&apos;\">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -62,7 +62,7 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
   };
 </script>
 
-  <title>  | ri0day </title>
+  <title> mysql prompt trick  | ri0day </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -178,7 +178,7 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
           
           
             
-              
+              mysql prompt trick 
             
           
         </h1>
@@ -187,11 +187,26 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-06-08T15:18:01+08:00" content="2016-06-08">
+          <time itemprop="dateCreated" datetime="2016-06-08T15:38:34+08:00" content="2016-06-08">
             2016-06-08
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/tech/" itemprop="url" rel="index">
+                  <span itemprop="name">tech</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -213,8 +228,7 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
       
 
       
-        <span itemprop="articleBody"><p>title: mysql prompt trick<br>date: 2016-06-08 14:50:37<br>tags:[mysql]</p>
-<h2 id="categories:tech">categories:tech  </h2><h3 id="mysql和其他shell一样,可以自定义终端提示符,这个可能都知道-有3种方法实现">mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现</h3><h3 id="1-_设置系统变量">1. 设置系统变量</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export MYSQL_PS1='<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>'</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><h3 id="mysql和其他shell一样,可以自定义终端提示符,这个可能都知道-有3种方法实现">mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现</h3><h3 id="1-_设置系统变量">1. 设置系统变量</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export MYSQL_PS1='<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>'</span><br></pre></td></tr></table></figure>
 <h3 id="2-_在my-cnf设置">2. 在my.cnf设置</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="special">[</span>client<span class="special">]</span>  </span><br><span class="line">prompt=<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="3-_传prompt参数到mysql_命令行">3. 传prompt参数到mysql 命令行</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -pxxxx -h127.0.0.1 --prompt='<span class="command">\u</span>@<span class="command">\h</span>@<span class="command">\p</span> <span class="special">[</span><span class="command">\d</span><span class="special">]</span>'</span><br></pre></td></tr></table></figure>
 <p>这3种方法在一个机器只有一个mysql 实例的时候都可以适用  </p>
@@ -222,19 +236,25 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
 <p>如果用传统的设置在my.cnf的方法,他就是全局的.无法识别登录的是哪个实例  </p>
 <p>用prompt参数传入mysql命令行明显也不是很好的办法,每次登录要输入一大堆难输入的字符串,还要记住哪个实例是主库或者从库  </p>
 <p>到这里经过一些联想,发觉,既然mysql有一个机器运行多个实例的mysqld_multi管理工具<br>他的工作原理就是读取my.cnf里面的section的配置<br>然后去启动和关闭mysqld进程的,既然他能从用户输入的参数定位到my.cnf里面的section,mysql应该是实现了这个功能的.<br>经过一番google,确实发现一个不怎么常用的参数’–defaults-group-suffix=’就是实现去读取自定义的section的.  </p>
-<h3 id="他的原理是这样的:">他的原理是这样的:</h3><p>如果你指定<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#37027;&#20040;&#20182;&#20250;&#21435;my.cnf&#35835;&#21462; [mysql_good] section  &#10;&#10;&#21040;&#36825;&#37324;,&#25105;&#20204;&#30340;&#23454;&#29616;&#26041;&#27861;&#23601;&#26126;&#26391;&#20102;&#65306;    &#10;&#37197;&#32622;2&#20010;section,&#19968;&#20010;```[mysql_master]```&#21644;```[mysql_slave]``` ,&#28982;&#21518;&#30331;&#24405;&#30340;&#26102;&#20505;&#20256;suffix&#21442;&#25968;&#23601;&#21487;&#20197;&#20102;  &#10;&#10;### &#26041;&#26696;&#22914;&#19979;&#10;&#22312; my.cnf&#28155;&#21152;:</span><br></pre></td></tr></table></figure></p>
-<p>[mysql_master]<br>socket=/tmp/mysql_3306.sock<br>prompt=’\u@\h:\p (\d)-[master] &gt; ‘</p>
-<p>[mysql_slave]<br>user=root<br>socket=/tmp/mysql_3307.sock<br>prompt=’\u@\h:\p (\d)-[slave] &gt; ‘<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 登录的方式</span></span><br></pre></td></tr></table></figure></p>
-<p>[root@localhost ~]# mysql -uroot -p –defaults-group-suffix=’_slave’<br>root@localhost:mysql_3307.sock ((none))-[slave] &gt; </p>
-<p>[root@localhost ~]# mysql -uroot -p –defaults-group-suffix=’_master’<br>root@localhost:mysql_3306.sock ((none))-[master] &gt;<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 简化一下,做一个alias</span></span><br></pre></td></tr></table></figure></p>
-<p>[root@localhost ~]#vim ~/.bashrc<br>alias mysqlmaster=’/usr/bin/mysql -uroot -p –defaults-group-suffix=_master’<br>alias mysqlslave=’/usr/bin/mysql -uroot -p –defaults-group-suffix=_slave’</p>
-<p>[root@localhost ~]#source ~/.bashrc<br>```</p>
+<h3 id="他的原理是这样的:">他的原理是这样的:</h3><p>如果你指定 –defaults-group-suffix=_good</p>
+<p>那么他会去my.cnf读取 [mysql_good] section  </p>
+<p>到这里,我们的实现方法就明朗了： </p>
+<p>配置2个section,一个[mysql_master]和[mysql_slave] ,然后登录的时候传suffix参数就可以了  </p>
+<h3 id="方案如下">方案如下</h3><p>在 my.cnf添加:<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[mysql_master]</span></span><br><span class="line"><span class="setting">socket=<span class="value">/tmp/mysql_3306.sock</span></span></span><br><span class="line"><span class="setting">prompt=<span class="value"><span class="string">'\u@\h:\p (\d)-[master] &gt; '</span></span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysql_slave]</span></span><br><span class="line"><span class="setting">user=<span class="value">root</span></span></span><br><span class="line"><span class="setting">socket=<span class="value">/tmp/mysql_3307.sock</span></span></span><br><span class="line"><span class="setting">prompt=<span class="value"><span class="string">'\u@\h:\p (\d)-[slave] &gt; '</span></span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="登录方式">登录方式</h3><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">[<span class="keyword">root@localhost</span> ~]# mysql -uroot -p --defaults-group-suffix=<span class="variable">'_slave</span>'</span><br><span class="line">root@localhost:mysql_3307.sock <span class="list">(<span class="list">(<span class="keyword">none</span>)</span>)</span>-<span class="list">[<span class="keyword">slave</span>] &gt; </span><br><span class="line"></span><br><span class="line"><span class="list">[<span class="keyword">root@localhost</span> ~]# mysql -uroot -p --defaults-group-suffix=<span class="variable">'_master</span>'</span><br><span class="line">root@localhost:mysql_3306.sock <span class="list">(<span class="list">(<span class="keyword">none</span>)</span>)</span>-<span class="list">[<span class="keyword">master</span>] &gt;</span></span></span></span></span><br></pre></td></tr></table></figure>
+<h3 id="简化一下,做一个alias">简化一下,做一个alias</h3><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@localhost</span> ~] vim ~/.bashrc</span><br><span class="line"><span class="keyword">alias</span> mysqlmaster=<span class="string">'/usr/bin/mysql -uroot -p --defaults-group-suffix=_master'</span></span><br><span class="line"><span class="keyword">alias</span> mysqlslave=<span class="string">'/usr/bin/mysql -uroot -p --defaults-group-suffix=_slave'</span></span><br><span class="line"></span><br><span class="line">[root<span class="variable">@localhost</span> ~] <span class="keyword">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
 <h3 id="参考连接:">参考连接:</h3><p><a href="https://dev.mysql.com/doc/refman/5.5/en/option-file-options.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.5/en/option-file-options.html</a><br><a href="https://www.quora.com/Is-there-a-way-to-save-default-MySQL-connection-parameters-in-a-configuration-file" target="_blank" rel="external">https://www.quora.com/Is-there-a-way-to-save-default-MySQL-connection-parameters-in-a-configuration-file</a></p>
 </span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
+          
+        </div>
       
 
       
@@ -271,7 +291,7 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
           <div class="comments" id="comments">
             
               <div class="ds-thread" data-thread-key="2016/06/08/mysql-prompt-trick/"
-                   data-title="" data-url="http://ri0day.github.io/2016/06/08/mysql-prompt-trick/">
+                   data-title="mysql prompt trick " data-url="http://ri0day.github.io/2016/06/08/mysql-prompt-trick/">
               </div>
             
           </div>
@@ -325,7 +345,7 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -353,7 +373,7 @@ categories:tech  mysql和其他shell一样,可以自定义终端提示符,这个
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#categories:tech"><span class="nav-number">1.</span> <span class="nav-text">categories:tech  </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql和其他shell一样,可以自定义终端提示符,这个可能都知道-有3种方法实现"><span class="nav-number">1.1.</span> <span class="nav-text">mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_设置系统变量"><span class="nav-number">1.2.</span> <span class="nav-text">1. 设置系统变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_在my-cnf设置"><span class="nav-number">1.3.</span> <span class="nav-text">2. 在my.cnf设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_传prompt参数到mysql_命令行"><span class="nav-number">1.4.</span> <span class="nav-text">3. 传prompt参数到mysql 命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题来了"><span class="nav-number">1.5.</span> <span class="nav-text">问题来了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#他的原理是这样的:"><span class="nav-number">1.6.</span> <span class="nav-text">他的原理是这样的:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考连接:"><span class="nav-number">1.7.</span> <span class="nav-text">参考连接:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql和其他shell一样,可以自定义终端提示符,这个可能都知道-有3种方法实现"><span class="nav-number">1.</span> <span class="nav-text">mysql和其他shell一样,可以自定义终端提示符,这个可能都知道.有3种方法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_设置系统变量"><span class="nav-number">2.</span> <span class="nav-text">1. 设置系统变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_在my-cnf设置"><span class="nav-number">3.</span> <span class="nav-text">2. 在my.cnf设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_传prompt参数到mysql_命令行"><span class="nav-number">4.</span> <span class="nav-text">3. 传prompt参数到mysql 命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题来了"><span class="nav-number">5.</span> <span class="nav-text">问题来了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#他的原理是这样的:"><span class="nav-number">6.</span> <span class="nav-text">他的原理是这样的:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案如下"><span class="nav-number">7.</span> <span class="nav-text">方案如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录方式"><span class="nav-number">8.</span> <span class="nav-text">登录方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简化一下,做一个alias"><span class="nav-number">9.</span> <span class="nav-text">简化一下,做一个alias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考连接:"><span class="nav-number">10.</span> <span class="nav-text">参考连接:</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
